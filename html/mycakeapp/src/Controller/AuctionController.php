@@ -88,14 +88,18 @@ class AuctionController extends AuctionBaseController
 	{
 		// Biditemインスタンスを用意
 		$biditem = $this->Biditems->newEntity();
+
 		// POST送信時の処理
 		if ($this->request->is('post')) {
 			//画像データの受け取りをする
 			$img_data = $this->request->getdata('image');
+
+
 			//画像データがアップロードされていなければエラーメッセージをだす
 			if ($img_data['error'] !== 0) {
 				$this->Flash->error(__('画像は必須です'));
 			} else {
+
 				//拡張子のチェックをする。
 				//まず検索対象の配列を用意
 				$permit_type = array('jpg', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF');
@@ -104,10 +108,11 @@ class AuctionController extends AuctionBaseController
 				//画像の拡張子$img_typeを$permit_typeと比較する。　※第三引数で型(string)の比較。
 				if (in_array($img_type, $permit_type, true)) {
 					// 拡張子が$permit_typeのどれかであれば'image_path’は仮でtemp＋拡張子という名前にしておく。
-					$biditem['image_path'] = "temp" . "." . $img_type;
 					//biditemにフォームの送信内容を反映
 					$biditem = $this->Biditems->patchEntity($biditem, $this->request->getdata());
+					$biditem['image_path'] = "temp" . "." . $img_type;
 					if ($this->Biditems->save($biditem)) {
+
 						//画像名に商品ID(biditemのid)をつかい、img/auction/商品ID+拡張子とする
 						$biditem_id = $biditem->id;
 						$path = 'auction/' . $biditem_id . "." . $img_type;

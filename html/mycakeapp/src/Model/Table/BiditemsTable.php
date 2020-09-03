@@ -86,7 +86,7 @@ class BiditemsTable extends Table
             //画像のバリデーション追加
             ->scalar('image_path') //テキスト型に指定
             ->maxlength('image_path', 100) //長さは100まで
-            ->requirePresence('detail', 'create')
+            ->requirePresence('image_path', 'create')
             ->notEmptyString('image_path'); //空を許可しない
         $validator
             //商品詳細のバリデーション追加
