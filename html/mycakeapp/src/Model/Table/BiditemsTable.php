@@ -82,6 +82,19 @@ class BiditemsTable extends Table
             ->dateTime('endtime')
             ->requirePresence('endtime', 'create')
             ->notEmptyDateTime('endtime');
+        $validator
+            //画像のバリデーション追加
+            ->scalar('image_path') //テキスト型に指定
+            ->maxlength('image_path', 100) //長さは100まで
+            ->requirePresence('detail', 'create')
+            ->notEmptyString('image_path'); //空を許可しない
+        $validator
+            //商品詳細のバリデーション追加
+            ->scalar('detail') //テキスト型に指定
+            ->maxLength('detail', 1000) //長さは1000まで
+            ->requirePresence('detail', 'create') //指定したフィールドをNOT NULL相当にし、なおかつ必須項目にする
+            ->notEmptyString('detail'); //空を許可しない
+
 
         return $validator;
     }
