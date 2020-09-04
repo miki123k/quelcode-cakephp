@@ -102,7 +102,7 @@ class AuctionController extends AuctionBaseController
 
 				//拡張子のチェックをする。
 				//まず検索対象の配列を用意
-				$permit_type = array('jpg', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF');
+				$permit_type = array('jpg', 'jpeg', 'JPEG', 'JPG', 'png', 'PNG', 'gif', 'GIF');
 				//アップロードしたファイル名の拡張子部分を取得する。
 				$img_type = pathinfo($img_data['name'], PATHINFO_EXTENSION);
 				//画像の拡張子$img_typeを$permit_typeと比較する。　※第三引数で型(string)の比較。
