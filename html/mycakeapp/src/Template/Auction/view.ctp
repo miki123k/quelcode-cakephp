@@ -38,6 +38,8 @@
 		<?php
 		$endtime = new DateTime($biditem->endtime);
 		$format_endtime = $endtime->format("Y/m/d/ H:i:s");
+		$nowtime = new DateTime('now');
+		$format_nowtime = $nowtime->format("Y/m/d/ H:i:s")
 		?>
 		<script>
 			function dateCounter() {
@@ -49,6 +51,7 @@
 					//日数を計算
 					var daysBetween = Math.floor((anyDate - nowDate) / (1000 * 60 * 60 * 24));
 					var ms = (anyDate - nowDate);
+					console.log(ms);
 					if (ms >= 0) {
 						//時間を取得
 						var h = Math.floor(ms / 3600000);
@@ -59,6 +62,7 @@
 						var s = Math.round((ms - h * 3600000 - m * 60000) / 1000);
 						//HTML上に出力
 						document.getElementById("countOutput").innerHTML = daysBetween + "日" + _h + "時間" + m + "分" + s + "秒";
+						nowDate++;
 						if ((h == 0) && (m == 0) && (s == 0)) {
 							clearInterval(timer);
 							document.getElementById("countOutput").innerHTML = "終了しました";
