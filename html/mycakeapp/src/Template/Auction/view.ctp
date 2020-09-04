@@ -63,7 +63,6 @@
 						//HTML上に出力
 						document.getElementById("countOutput").innerHTML = daysBetween + "日" + _h + "時間" + m + "分" + s + "秒";
 						server_time.setSeconds(server_time.getSeconds() + 1);
-						//dt.setSeconds(dt.getSeconds() + 10);
 						if ((h == 0) && (m == 0) && (s == 0)) {
 							clearInterval(timer);
 							document.getElementById("countOutput").innerHTML = "終了しました";
