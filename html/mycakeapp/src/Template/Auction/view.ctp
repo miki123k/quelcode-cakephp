@@ -43,15 +43,15 @@
 		?>
 		<script>
 			function dateCounter() {
+				var server_time = new Date("<?= $format_nowtime ?>");
 				var timer = setInterval(function() {
 					//現在の日時取得
-					var nowDate = new Date();
+					var nowDate = new Date(server_time);
 					//カウントダウンしたい日を設定
 					var anyDate = new Date("<?= $format_endtime ?>");
 					//日数を計算
 					var daysBetween = Math.floor((anyDate - nowDate) / (1000 * 60 * 60 * 24));
 					var ms = (anyDate - nowDate);
-					console.log(ms);
 					if (ms >= 0) {
 						//時間を取得
 						var h = Math.floor(ms / 3600000);
@@ -62,7 +62,8 @@
 						var s = Math.round((ms - h * 3600000 - m * 60000) / 1000);
 						//HTML上に出力
 						document.getElementById("countOutput").innerHTML = daysBetween + "日" + _h + "時間" + m + "分" + s + "秒";
-						nowDate++;
+						server_time.setSeconds(server_time.getSeconds() + 1);
+						//dt.setSeconds(dt.getSeconds() + 10);
 						if ((h == 0) && (m == 0) && (s == 0)) {
 							clearInterval(timer);
 							document.getElementById("countOutput").innerHTML = "終了しました";
